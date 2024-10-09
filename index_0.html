@@ -68,7 +68,7 @@
     <script>
         const image = document.getElementById('movingImage');
         const duration = 70000000; 
-        const intervalTime = 200; // Move every 0.5 seconds
+        const intervalTime = 200; // Move every 0.2 seconds
         const startTime = Date.now();
 
         function moveImage() {
@@ -78,36 +78,18 @@
                 const randomY = Math.random() * (window.innerHeight - image.clientHeight);
                 image.style.left = `${randomX}px`;
                 image.style.top = `${randomY}px`;
-            }else {
+            } else {
                 clearInterval(moveInterval);
             }
         }
 
         const moveInterval = setInterval(moveImage, intervalTime);
-    </script>
-    <script>
-        var imageLink = document.getElementById('imageLink');
-        var movingImage = document.getElementById('movingImage');
-    
-        imageLink.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link action
-    
-            // Add the vibrating class to start the animation
-            movingImage.classList.add('vibrating');
-    
-            // Increase the speed of the vibration over 5 seconds
-            var duration = 100; // Initial duration in milliseconds
-            var interval = setInterval(function() {
-                duration -= 2; // Decrease duration to increase speed
-                movingImage.style.animationDuration = duration / 1000 + 's';
-    
-                if (duration <= 10) { // Stop after 5 seconds
-                    clearInterval(interval);
-                    movingImage.classList.remove('vibrating'); // Remove the class to stop the animation
-                    movingImage.style.animationDuration = ''; // Reset animation duration
-                }
-            }, 100);
+
+        // Add click event listener to stop the movement
+        image.addEventListener('click', () => {
+            clearInterval(moveInterval);
         });
+
     </script>
 </body>
 </html>
