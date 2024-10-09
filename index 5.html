@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Bestiiii</title>
+  <script>
+    function playAudio() {
+        var audio = document.getElementById("myAudio");
+        audio.play();
+    }
+  </script>
+  <link rel="stylesheet" href="./style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> <!-- Added custom font -->
+</head>
+<body>
+  <audio autoplay="autoplay" height="100" width="100" id = "myAudio">
+    <source src="audio/pyar.mp3" type="audio/mp3" />
+    <embed height="100" width="100" src="audio/pyar.mp3" />
+  </audio>
+  <div id="drag-container">
+    <div id="spin-container">
+      <!-- Fourth Layer: 1 Photo -->
+      <img src="./20.jpg" alt="">
+      
+      <!-- First Layer: 5 Photos -->
+      <img src="./1.jpg" alt="">
+      <img src="./2.jpg" alt="">
+      <img src="./3.jpg" alt="">
+      <img src="./4.jpg" alt="">
+      <img src="./5.jpg" alt="">
+      
+      <!-- Second Layer: 6 Photos -->
+      <img src="./6.jpg" alt="">
+      <img src="./7.jpg" alt="">
+      <img src="./8.jpg" alt="">
+      <img src="./9.jpg" alt="">
+      <img src="./10.jpg" alt="">
+      <img src="./11.jpg" alt="">
+      
+      <!-- Third Layer: 8 Photos -->
+      <img src="./12.jpg" alt="">
+      <img src="./13.jpg" alt="">
+      <img src="./14.jpg" alt="">
+      <img src="./15.jpg" alt="">
+      <img src="./16.jpg" alt="">
+      <img src="./17.jpg" alt="">
+      <img src="./18.jpg" alt="">
+      <img src="./19.jpg" alt=""> 
+    </div>
+    <div id="ground"></div>
+  </div>
+
+  
+  <div id="wrap">
+    <img src="images1/happy.gif" alt="Happy Birthday" style="width:272px; height:400px;">
+    <div id="text">
+        <div id="shayri">
+          <span class="say">खुदा बुरी नज़र से बचाए </span><br>
+          <span class="say">आप को चाँद सितारों से सजाए </span><br>             
+          <span class="say">आप को, गम क्या होता है </span><br>
+          <span class="say">ये आप भूल ही जाओ </span><br>
+          <span class="say">खुदा ज़िन्दगी मे इतना हँसाए आप को !!</span><br>
+          <span class="say">Your @SANYAM(SAM)! </span><br>
+          
+          <span class="say"><span class="space"></span></span> </font>
+              <br />
+              <br />
+          </p>
+        </div>
+    </div>
+  </div>
+
+
+  <!-- New Text Container -->
+  <div id="text-container" class="animate"></div>
+
+  <!-- Candle Image (Add the image of the name candle here) -->
+  <div id="candle-container" >
+    <img src="images1/candle.png" alt="Candle Image">
+  </div>
+
+  <script src="./script.js"></script>
+  <script>
+    const textContainer = document.getElementById('text-container');
+    const message = "Happy Birthday Darling";
+    let index = 0;
+
+    function showLetter() {
+      if (index < message.length) {
+        textContainer.innerHTML += message.charAt(index); // Add one letter at a time
+        index++;
+        setTimeout(showLetter, 300); // Adjust speed (300ms) as needed
+      } else {
+        textContainer.style.opacity = 1; // Make text visible after animation
+      }
+    }
+
+    // Make text container visible before the first letter appears
+    textContainer.style.opacity = 1; 
+
+    // Start the animation after a short delay
+    setTimeout(showLetter, 1000); // Start after 1 second
+  </script>
+
+</body>
+</html>

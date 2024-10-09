@@ -1,0 +1,261 @@
+/* Created by Tivotal */
+
+/* Google Fonts(Poppins) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #05353d, #0a6b7a, #ff6f61, #ffcc00); /* Colorful gradient background */
+  background-size: 400% 400%; /* To create a moving effect */
+  animation: gradientAnimation 15s ease infinite; /* Animate the gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Hide overflow for particle effects */
+}
+
+/* Keyframes for gradient animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Optional: Particle effect */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Example particle texture */
+  opacity: 0.1;
+  pointer-events: none;
+  animation: particleAnimation 20s linear infinite;
+}
+
+@keyframes particleAnimation {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10%;
+  background: #f5edd1;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .envelope {
+  position: relative;
+  width: 425px;
+  height: 230px;
+}
+
+.wrapper .envelope::before {
+  position: absolute;
+  content: "";
+  z-index: 4;
+  top: 0;
+  border-top: 130px solid #ecdeb8;
+  border-right: 212px solid transparent;
+  border-left: 212px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.wrapper.open .envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.wrapper .envelope::after {
+  position: absolute;
+  content: "";
+  z-index: 4;
+  border-top: 130px solid transparent;
+  border-right: 212px solid #e6cfa7;
+  border-bottom: 100px solid #e6cfa7;
+  border-left: 212px solid #e6cfa7;
+}
+/* Add a glow effect on hover */
+.wrapper:hover .envelope {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Add a glow effect */
+}
+
+/* Add a bounce animation */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.wrapper:hover .envelope {
+  animation: bounce 1s;
+}
+
+
+
+.envelope .letter {
+  position: absolute;
+  width: 54%;
+  height: 80%;
+  background: linear-gradient(135deg, #f0f0f0, #ffffff); /* Gradient background */
+  padding: 20px 10px;
+  right: 20%;
+  bottom: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 1s ease-in-out;
+  z-index: 2;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  transform: rotate(0deg); /* Initial rotation */
+}
+
+.wrapper.open .envelope .letter {
+  bottom: 100px;
+  transform: scale(1.5) rotate(2deg); /* Slight rotation */
+  transition-delay: 1s;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.envelope .letter .text {
+  color: #222;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.envelope .letter:hover {
+  transform: scale(1.05) rotate(-2deg); /* Rotate in opposite direction on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.7);
+  border-color: #bbb;
+  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition for transform and shadow */
+}
+
+
+
+
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transform: translate(-85%, -60%) rotate(45deg);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out 1s;
+  transform-origin: bottom;
+}
+
+.wrapper.open .heart {
+  transform: translate(-20%, -40%) rotate(230deg);
+  transition-delay: 0.4s;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart:before {
+  top: -7.5px;
+}
+
+.heart:after {
+  right: 7.5px;
+}
+
+.float-text {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-51%) scale(0);
+  top: -10px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+  padding: 10px 20px; /* Add some padding for better appearance */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Glowing text effect */
+}
+
+.wrapper.open .float-text {
+  transform: translateX(-51%) scale(1);
+  top: -400px;
+  transition-delay: 1.2s;
+  text-shadow: 0 0 15px rgba(0, 150, 255, 0.8); /* Enhanced text glow */
+}
+
+
+#bigHeart {
+  position: relative;
+  width: 200px; /* Set the desired width */
+  height: 200px; /* Set the desired height */
+  margin: 0 10px; /* Add some margin to space it out */
+  display: inline-block; /* Ensure it behaves like an inline element */
+  overflow: hidden; /* Ensure child elements don't overflow */
+}
+
+#bigHeart a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#bigHeart img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+#bigHeart img:hover {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
+
+
+
+
+.float-text span {
+  min-width: 60px;
+  margin-left: 20px;
+  color: red;
+  font-size: 180px;
+  font-weight: 600;
+}

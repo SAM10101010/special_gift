@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch it and keep it </title>
+
+    <style>
+        @keyframes vibrate {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-2px, -2px); }
+            100% { transform: translate(2px, 2px); }
+        }
+    
+        .vibrating {
+            animation: vibrate 0.1s infinite;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+
+        a img {
+            width: 200px;
+            height: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, top 0.5s ease, left 0.5s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            position: absolute; /* Allow positioning */
+        }
+
+        a img:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        a {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Image wrapped in an anchor tag to make it clickable -->
+    <a href="index 1.html">
+        <img id="movingImage" src="images1/button.png" alt="Description of Image">
+    </a>
+
+    <script>
+        const image = document.getElementById('movingImage');
+        const duration = 70000000; 
+        const intervalTime = 200; // Move every 0.5 seconds
+        const startTime = Date.now();
+
+        function moveImage() {
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime < duration) {
+                const randomX = Math.random() * (window.innerWidth - image.clientWidth);
+                const randomY = Math.random() * (window.innerHeight - image.clientHeight);
+                image.style.left = `${randomX}px`;
+                image.style.top = `${randomY}px`;
+            }else {
+                clearInterval(moveInterval);
+            }
+        }
+
+        const moveInterval = setInterval(moveImage, intervalTime);
+    </script>
+    <script>
+        var imageLink = document.getElementById('imageLink');
+        var movingImage = document.getElementById('movingImage');
+    
+        imageLink.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link action
+    
+            // Add the vibrating class to start the animation
+            movingImage.classList.add('vibrating');
+    
+            // Increase the speed of the vibration over 5 seconds
+            var duration = 100; // Initial duration in milliseconds
+            var interval = setInterval(function() {
+                duration -= 2; // Decrease duration to increase speed
+                movingImage.style.animationDuration = duration / 1000 + 's';
+    
+                if (duration <= 10) { // Stop after 5 seconds
+                    clearInterval(interval);
+                    movingImage.classList.remove('vibrating'); // Remove the class to stop the animation
+                    movingImage.style.animationDuration = ''; // Reset animation duration
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>

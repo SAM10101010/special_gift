@@ -1,0 +1,294 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 120%;
+    touch-action: none;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    background: #111;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    font-family: 'Pacifico', cursive; /* Apply the custom font */
+}
+
+#drag-container, #spin-container {
+    position: relative;
+    display: flex;
+    margin: auto;
+    transform-style: preserve-3d;
+    transform: rotateX(-10deg);
+}
+
+#drag-container img, #drag-container video {
+    transform-style: preserve-3d;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 8px #fff;
+    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+}
+
+#drag-container img:hover, #drag-container video:hover {
+    box-shadow: 0 0 15px #fffd, 0 0 25px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5);
+    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0007);
+}
+
+#drag-container p {
+    font-family: Serif;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotateX(90deg);
+    color: #fff;
+}
+
+/* Existing CSS here... */
+
+#candle-container {
+    cursor: pointer;
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    bottom: 500px;
+    right: 88px;
+    z-index: 10;
+    -webkit-box-reflect: below 10px linear-gradient(transparent, transparent, #0005);
+    filter: drop-shadow(0 0 20px rgba(255, 183, 76, 0.8)); /* Soft glow effect */
+    transition: transform 0.3s ease; /* Smooth transform */
+    animation: fadeIn 0.5s ease forwards; /* Fade-in effect */
+}
+
+
+
+#candle-container img {
+    width: 100%; /* Ensure the image fits the container */
+    height: auto; /* Maintain aspect ratio */
+    -webkit-box-reflect: below -20px linear-gradient(transparent, transparent, #0005);
+    transition: transform 0.3s ease, filter 0.3s ease; /* Smooth hover effects */
+}
+
+#candle-container:hover img {
+    transform: scale(1.1) rotate(5deg); /* Slightly enlarge and rotate the image */
+    filter: drop-shadow(0 0 30px rgba(255, 183, 76, 1)); /* Increase the glow on hover */
+}
+
+#candle-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; /* Place behind the image */
+    transition: opacity 0.3s ease; /* Smooth overlay appearance */
+}
+
+#candle-container:hover::before {
+    opacity: 0; /* Fade out on hover */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+#ground {
+    width: 900px;
+    height: 900px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotateX(90deg);
+    background: radial-gradient(circle, #9993, transparent);
+}
+
+#shayri {
+    position: absolute;
+    top: 10%;
+    left: 1.5%; /* Corrected to include 'px' for proper positioning */
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #fff; /* Text color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Adds a shadow to the text */
+    animation: fadeInMove 2s ease-out forwards; /* Animation effect */
+    opacity: 0; /* Start with the text invisible */
+}
+
+@keyframes fadeInMove {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+.text-container {
+    font-size: 2em;
+    display: flex;
+}
+
+.say span {
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.say span.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#wrap {
+    position: absolute;
+    margin: 0 auto;
+    width: 272px;
+    height: 400px;
+    margin-top: 30px;
+    border: 2px solid #fff; /* Add a border for visual effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+#wrap:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+#text {
+    width: 272px;
+    height: 400px;
+    left: 188px;
+    top: 80px;
+    position: absolute;
+    background: linear-gradient(135deg, rgba(255, 0, 150, 0.3), rgba(0, 204, 255, 0.3)); /* Gradient background */
+    backdrop-filter: blur(5px); /* Blur effect for modern look */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Add some padding */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth background and transform transition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for depth */
+}
+
+#text:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 150, 0.5), rgba(0, 204, 255, 0.5)); /* More intense gradient on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
+}
+
+@keyframes colorShift {
+    0% {
+        background: linear-gradient(135deg, rgba(255, 0, 150, 0.3), rgba(0, 204, 255, 0.3));
+    }
+    50% {
+        background: linear-gradient(135deg, rgba(0, 204, 255, 0.3), rgba(255, 255, 0, 0.3));
+    }
+    100% {
+        background: linear-gradient(135deg, rgba(255, 0, 150, 0.3), rgba(0, 204, 255, 0.3));
+    }
+}
+
+#text {
+    animation: colorShift 5s infinite alternate; /* Apply color shifting animation */
+}
+
+#text-container {
+    font-size: 3.3em; /* Adjust the size as needed */
+    color: #fff; /* Initial text color */
+    position: absolute; /* Make it position absolute */
+    top: 10px; /* Distance from the top */
+    right: 10px; /* Distance from the right */
+    text-align: right; /* Align text to the right */
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.5s ease, color 0.5s ease; /* Smooth appearance with color transition */
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.5);
+    animation: glow 2s infinite alternate; /* Add glowing effect */
+}
+
+/* Letter effects */
+.letter {
+    display: inline-block; /* Allows for individual animations */
+    opacity: 0; /* Start invisible */
+    transform: scale(0.5) rotateY(-90deg); /* Initial scaling and rotation */
+    animation: bounceIn 0.5s forwards, spin 3s infinite linear; /* Use the bounce and spin animation */
+}
+
+
+/* Bouncing effect */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-20px); /* Start small and above */
+    }
+    60% {
+        opacity: 1; /* Fully visible */
+        transform: scale(1.2) translateY(10px); /* Scale up and drop */
+    }
+    100% {
+        transform: scale(1) translateY(0); /* Back to normal */
+    }
+}
+
+/* Add keyframes for color transitions */
+@keyframes colorChange {
+    0% { color: #ff5733; }
+    25% { color: #33ff57; }
+    50% { color: #3357ff; }
+    75% { color: #f3ff33; }
+    100% { color: #ff33a6; }
+}
+
+/* Apply animation */
+.animate {
+    animation: colorChange 2s infinite, spinRevert 5s infinite linear; /* Infinite color change and spin revert animation */
+}
+
+/* Glowing effect */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #ff33a6, 0 0 10px #ff33a6, 0 0 15px #ff33a6, 0 0 20px #ff33a6;
+    }
+    100% {
+        text-shadow: 0 0 10px #33ff57, 0 0 20px #33ff57, 0 0 30px #33ff57, 0 0 40px #33ff57;
+    }
+}
+
+/* Spin effect */
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+/* Spin revert effect */
+@keyframes spinRevert {
+    from {
+        transform: rotateY(360deg);
+    }
+    to {
+        transform: rotateY(0deg);
+    }
+}

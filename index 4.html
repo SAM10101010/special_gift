@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--Created by Tivotal-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Card Slider</title>
+    <script>
+      function playAudio() {
+          var audio = document.getElementById("myAudio");
+          audio.play();
+      }
+    </script>
+
+    <!--swiperJS-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!--css file-->
+    <link rel="stylesheet" href="styles1.css" />
+  </head>
+  <body>
+    <audio autoplay="autoplay" height="100" width="100" id = "myAudio">
+      <source src="audio/aud.mp3" type="audio/mp3" />
+      <embed height="100" width="100" src="audio/aud.mp3" />
+    </audio>
+    <div class="wrapper">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/1.jpg" alt="" />
+            <h2>Slide 1</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/2.jpg" alt="" />
+            <h2>Slide 2</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/3.jpg" alt="" />
+            <h2>Slide 3</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/4.jpg" alt="" />
+            <h2>Slide 4</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/5.jpg" alt="" />
+            <h2>Slide 5</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/6.jpg" alt="" />
+            <h2>Slide 6</h2>
+          </div>
+
+          <div class="swiper-slide">
+            <img src="images/7.jpg" alt="" />
+            <h2>Slide 7</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="text">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, accusamus
+          fugit. Vel sequi recusandae incidunt ullam cupiditate animi
+          consectetur provident nostrum ducimus vitae quo eos, minus pariatur
+          molestiae, quae, odio tempore voluptate sed rerum! At, repellat
+          voluptatibus perferendis voluptas harum veniam! Odit ex iste quam,
+          nulla quia ut dignissimos? Saepe!
+        </p>
+        <button class="btn" id="subscribeButton">Subscribe</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="app1.js"></script>
+  </body>
+</html>
