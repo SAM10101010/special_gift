@@ -37,6 +37,8 @@ body {
   width: 250px;
   height: 450px;
   padding: 50px 0;
+  overflow: hidden; /* Ensure that slides stay within bounds */
+  perspective: 1000px; /* Add 3D depth */
 }
 
 .swiper-slide {
@@ -44,6 +46,13 @@ body {
   border: 5px solid rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   box-shadow: 0 15px 50px rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform: rotateY(0deg); /* Initial state for 3D rotation */
+}
+
+.swiper-slide:hover {
+  transform: scale(1.05) rotateY(5deg); /* Slight zoom and 3D rotation on hover */
+  box-shadow: 0 25px 70px rgba(255, 255, 255, 0.3); /* Stronger shadow on hover */
 }
 
 .swiper-slide::before {
@@ -52,12 +61,25 @@ body {
   height: 100%;
   width: 100%;
   background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 10px;
+  transition: background 0.4s ease;
+}
+
+.swiper-slide:hover::before {
+  background: rgba(0, 0, 0, 0.4); /* Darker overlay on hover */
 }
 
 .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px; /* Ensures the image aligns with the border */
+  transition: transform 0.4s ease;
+}
+
+.swiper-slide:hover img {
+  transform: scale(1.1); /* Slight zoom effect on hover */
 }
 
 .swiper-slide h2 {
@@ -69,7 +91,16 @@ body {
   font-weight: 400;
   line-height: 1.4;
   margin: 0 0 20px 20px;
+  z-index: 2;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7); /* Add subtle shadow to text */
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
 }
+
+.swiper-slide:hover h2 {
+  transform: translateY(-10px); /* Move text upwards on hover */
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.9); /* Stronger shadow on hover */
+}
+
 
 .text {
   display: flex;
@@ -78,6 +109,8 @@ body {
   justify-content: center;
   max-width: 450px;
   padding: 0 35px;
+  background: transparent;
+  border-radius: 10px;
 }
 
 .text p {
@@ -87,7 +120,20 @@ body {
   line-height: 1.5;
   margin-bottom: 20px;
   text-align: justify;
+  position: relative;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), /* soft white glow */
+               0 0 20px rgba(255, 255, 255, 0.2), 
+               0 0 30px rgba(255, 255, 255, 0.1); /* increasing glow intensity */
+  transition: text-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+.text p:hover {
+  color: #f0f0f0; /* Slight lightening of the text on hover */
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), /* stronger white glow */
+               0 0 30px rgba(255, 255, 255, 0.5), 
+               0 0 40px rgba(255, 255, 255, 0.4); /* increase glow on hover */
+}
+
 
 .btn {
   display: block;
