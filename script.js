@@ -159,12 +159,12 @@ document.onpointerdown = function (e) {
     return false;
 };
 
-document.onmousewheel = function (e) {
-    e = e || window.event;
-    var d = e.wheelDelta / 20 || -e.detail;
-    baseRadius += d;
-    secondLayerRadius += d / 2; // Keep ratio between layers
-    firstLayerRadius += d / 3;
-    fourthLayerRadius += d / 4; // Adjust for the fourth layer
-    init(1);
-};
+// document.onmousewheel = function (e) {
+//     e = e || window.event;
+//     var d = e.wheelDelta / 20 || -e.detail;
+//     baseRadius += d;
+//     secondLayerRadius += d / 2; // Keep ratio between layers
+//     firstLayerRadius += d / 3;
+//     fourthLayerRadius += d / 4; // Adjust for the fourth layer
+//     init(1);
+// };
