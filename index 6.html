@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Birthday Card</title>
+    <script>
+        function playAudio() {
+            var startTime = 28;
+            var audio = document.getElementById("myAudio");
+            audio.currentTime = startTime;
+            audio.play();
+        }
+    </script>
     <style type="text/css">
        @keyframes gradientAnimation {
             0% {
@@ -254,6 +262,11 @@
     </style>
 </head>
 <body>
+    <audio autoplay="autoplay" height="100" width="100" id="myAudio">
+        <source src="audio/pyar1.mp3" type="audio/mp3" />
+        <embed height="100" width="100" src="audio/pyar1.mp3" />
+    </audio>
+    
 
 <div class="quiz-container">
     <h2>To unlock your birthday card, answer this question:</h2>
