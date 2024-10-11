@@ -589,6 +589,24 @@ body, html{
 	}
 }
 
+.link {
+	display: block;
+	max-width: 100%; /* Ensures the image is responsive */
+	height: auto;
+	border-radius: 10px; /* Rounds the corners of the image */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions for transform and shadow */
+}
+
+.link:hover {
+	transform: scale(1.05); /* Slightly enlarge the image on hover */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow effect on hover */
+}
+
+.link:active {
+	transform: scale(0.95); /* Slightly shrink the image when clicked */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adjusts the shadow when active */
+}
+
 .third--canvas .center--line{
 	position: absolute;
 	width:0%;

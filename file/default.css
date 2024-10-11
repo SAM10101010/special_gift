@@ -30,6 +30,26 @@ a {
   top: 80px;
   position: absolute;
 }
+#link a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff69b4; /* Pink background */
+  color: white; /* White text */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Bold text */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+#link a:hover {
+  background-color: #ff1493; /* Darker pink on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+#link a:active {
+  background-color: #c71585; /* Even darker pink when active */
+  transform: scale(0.95); /* Slightly shrink when clicked */
+}
 #code {
   display: none;
   color: rgb(196, 255, 255);
