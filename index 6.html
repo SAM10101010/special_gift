@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Birthday Card</title>
+    <style type="text/css">
+       @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            background: linear-gradient(135deg, #ffcc00, #ff6699, #66ccff);
+            background-size: 200% 200%;
+            animation: gradientAnimation 10s ease infinite; /* Animates the gradient */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+
+
+        .card {
+            position: relative;
+            width: 300px;
+            height: 425px;
+            border: 10px solid #9612eb;
+            margin: 60px auto 0 auto;
+            box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255), rgba(255, 255, 255, 0.5)), url("https://images.unsplash.com/photo-1527481138388-31827a7c94d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            background-size: cover;
+            background-color: #e6f0e6;
+        }
+        .card .text-container {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+        }
+
+        #head {
+            font-family: 'Arial', sans-serif; /* Sets a clean, modern font */
+            font-size: 3em; /* Increases the font size */
+            color: #fff; /* Sets the text color to white */
+            text-align: center; /* Centers the text */
+            padding: 20px; /* Adds padding around the text */
+            transition: color 0.3s ease-in-out; /* Smooth transition for color changes */
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; /* Initial glowing effect */
+            animation: glow 1.5s infinite alternate; /* Adds a pulsating glow effect */
+        }
+
+        #head:hover {
+            color: #ff00ff; /* Changes text color on hover */
+            text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; /* Intensifies the glow on hover */
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+            to {
+                text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+            }
+        }
+        .card {
+            display: none; /* Hide the card initially */
+            opacity: 0; /* Ensure it's not visible */
+            transition: opacity 0.5s ease; /* Smooth transition for opacity */
+        }
+
+        .card.unlocked {
+            display: block; /* Show the card when unlocked */
+            opacity: 1; /* Make it fully visible */
+        }
+
+
+        .strikethrough {
+            text-decoration: line-through;
+        }
+        .card .text-container #head {
+            font-family: 'Nobile', sans-serif;
+            font-size: 1.5em;
+            margin: 5px auto 5px auto;
+        }
+        .card p {
+            font-size: 1.1em;
+            line-height: 1.4;
+            font-family: 'Nobile';
+            color: #331717;
+            font-style: italic;
+            text-align: center;
+            margin: 30px auto 0px auto;
+        }
+        .card .front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: -10px 0px 0px -10px;
+            border: 10px solid #9612eb;
+            backface-visibility: hidden;
+            background-color: #9612eb;
+            background-size: contain;
+            transform-style: preserve-3d;
+            transform-origin: 0% 50%;
+            transform: perspective(800px) rotateY(0deg);
+            transition: all 0.8s ease-in-out;
+        }
+        .card:hover .front {
+            transform: perspective(800px) rotateY(-170deg);
+            background-color: #41718d;
+        }
+        .card:hover .back {
+            transform: perspective(800px) rotateY(-170deg);
+            box-shadow: 7px 0px 5px 0px rgba(0, 0, 0, 0.3), inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+            background-color: #d2dcd2;
+        }
+        .card .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 10px solid #9612eb;
+            margin: -10px 0px 0px -10px;
+            backface-visibility: visible;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, .5));
+            transform-style: preserve-3d;
+            transform-origin: 0% 50%;
+            transform: perspective(800px) rotateY(0deg);
+            transition: all 0.8s ease-in-out;
+            background-color: #e6f0e6;
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        #link h5 {
+            color: darkblue;         /* Changes text color to dark blue */
+            font-weight: bold;       /* Makes the text bold */ 
+            text-shadow: 2px 2px 4px lightgray; /* Adds a shadow effect */
+
+            transition: all 0.3s ease-in-out; /* Smooth transition effect for hover */
+            padding: 10px;           /* Adds padding around the text */
+        }
+
+        #link:hover h5 {
+            color: darkred;           /* Changes text color on hover */
+            text-shadow: 3px 3px 6px gray;  /* Changes the shadow effect on hover */
+            transform: scale(1.1);    /* Slightly enlarges the text on hover */
+
+        }
+
+
+        #shayri {
+            font-family: 'Georgia', serif; /* Use a serif font for a classic look */
+            color: #4A235A; /* Set a deep purple color */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+            background-color: #F5EEF8; /* Light background to contrast text */
+            padding: 10px; /* Add some padding around the text */
+            border-radius: 8px; /* Round the corners */
+            border: 1px solid #D2B4DE; /* Add a border with a lighter shade */
+            transition: transform 0.3s, color 0.3s; /* Smooth transition for hover effects */
+        }
+
+        #shayri:hover {
+            transform: scale(1.05); /* Slightly enlarge the text on hover */
+            color: #6C3483; /* Change text color on hover */
+        }
+
+        #love {
+                display: block;
+                max-width: 100%; /* Ensures the image is responsive */
+                height: auto;
+                border-radius: 15px; /* Rounds the corners of the image */
+                transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transitions for transform and shadow */
+        }
+
+        #love:hover {
+                transform: scale(1.1) rotate(5deg); /* Slightly enlarge and rotate the image on hover */
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Adds a shadow effect on hover */
+        }
+
+        #love:active {
+                transform: scale(0.95) rotate(-5deg); /* Slightly shrink and rotate the image when clicked */
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* Adjusts the shadow when active */
+        }
+
+        .imgset
+        {
+        position: relative;
+        z-index: 1;
+        margin-bottom: -215px;
+        }
+        .imgset img
+        {
+            box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
+            border-radius: 5px;
+        }
+
+        .card.unlocked {
+            opacity: 1;
+        }
+
+        .text-container {
+            width: 80%;
+            height: 80%;
+            margin: auto;
+        }
+
+       
+        .quiz-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .quiz-container input {
+            padding: 10px;
+            font-size: 1.2em;
+            border: 2px solid #9612eb;
+            border-radius: 5px;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        .quiz-container button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            background-color: #9612eb;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .quiz-container button:hover {
+            background-color: #ff00ff;
+        }
+
+        .quiz-result {
+            font-size: 1.5em;
+            color: green;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2>To unlock your birthday card, answer this question:</h2>
+    <p>I’m tall when I’m young, and I’m short when I’m old. What am I?</p>
+    <input type="text" id="userAnswer" placeholder="Your answer here">
+    <button onclick="checkFirstAnswer()">Submit Answer</button>
+    <p class="quiz-result" id="resultMessage"></p>
+</div>
+
+<!-- Second Puzzle Section -->
+<div class="quiz-container">
+    <h2>Or answer this question:</h2>
+    <p>If a girlfriend asks for 100% of your love and you give her 50% of your time, how much love do you have left?</p>
+    <input type="text" id="userAnswer2" placeholder="Your answer here">
+    <button onclick="checkSecondAnswer()">Submit Answer</button>
+    <p class="quiz-result" id="resultMessage2"></p>
+</div>
+
+<div class="card" id="birthdayCard">
+    <div class="back">
+        <div class="imgset" id="love">
+            <img src="images1/image1 (7).jpg" width="300px" height="425px">
+        </div>
+    </div>
+    <div class="front">
+        <div class="imgset">
+            <img width="100%" src="https://1.bp.blogspot.com/-Mgj9-rbs65E/XfMoPSD5gtI/AAAAAAAAURk/NBokE2gSS2cTSJ2em5lZ5hJDuTtRN7UVwCLcBGAsYHQ/s1600/2713997.png">
+        </div>
+    </div>
+    <div class="text-container">
+        <p id="head">Happy Birthday!</p>
+        <a href="https://www.instagram.com/sanyamskywalker/" id="link">
+            <h5>@sanyamskywalker</h5>
+        </a>
+        <p id="shayri">From the moment we met, I knew you were someone special, 
+            and as we've grown together, my love for you has only deepened. 
+            Will you make me the happiest person in the world by being my partner for life?</p>
+    </div>
+</div>
+<script>
+    function checkFirstAnswer() {
+        var userAnswer = document.getElementById('userAnswer').value;
+        var resultMessage = document.getElementById('resultMessage');
+        var birthdayCard = document.getElementById('birthdayCard');
+
+        if (userAnswer.toLowerCase() === 'candle') {
+            resultMessage.textContent = 'Correct! answer second question!';
+            resultMessage.style.color = 'green'; // Set the message color to green
+        } else {
+            resultMessage.textContent = 'Wrong answer, try again!';
+            resultMessage.style.color = 'red'; // Set the message color to red
+        }
+    }
+
+    function checkSecondAnswer() {
+        var userAnswer2 = document.getElementById('userAnswer2').value;
+        var resultMessage2 = document.getElementById('resultMessage2');
+        var birthdayCard = document.getElementById('birthdayCard');
+
+        if (userAnswer2.toLowerCase() === 'none') {
+            resultMessage2.textContent = 'Correct! Card Unlocked!';
+            resultMessage2.style.color = 'green'; // Set the message color to green
+            birthdayCard.classList.add('unlocked'); // Add the class to show the card
+        } else {
+            resultMessage2.textContent = 'Wrong answer, try again!';
+            resultMessage2.style.color = 'red'; // Set the message color to red
+        }
+    }
+</script>
+
+</body>
+</html>
